@@ -178,7 +178,7 @@ class _AdminFeedbackScreenState extends State<AdminFeedbackScreen> with TickerPr
               crossAxisCount: 2,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 1.2,
+              childAspectRatio: 1.3,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: [
