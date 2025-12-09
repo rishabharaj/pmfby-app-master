@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'dart:io';
 import '../../services/local_storage_service.dart';
 import '../../services/connectivity_service.dart';
+import '../../services/crop_capture_audio_service.dart';
+import '../../widgets/crop_capture_audio_player.dart';
 
 class CaptureImageScreen extends StatefulWidget {
   const CaptureImageScreen({super.key});
@@ -188,6 +190,15 @@ class _CaptureImageScreenState extends State<CaptureImageScreen> {
     );
   }
 
+  void _showAudioPlayer() {
+    final audioService = CropCaptureAudioService();
+    
+    showDialog(
+      context: context,
+      builder: (context) => CropCaptureAudioPlayer(audioService: audioService),
+    );
+  }
+
   void _showError(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message), backgroundColor: Colors.red),
@@ -364,28 +375,51 @@ class _CaptureImageScreenState extends State<CaptureImageScreen> {
 
                   // Capture Buttons
                   if (_image == null) ...[
-                    ElevatedButton.icon(
-                      onPressed: () => _captureImage(ImageSource.camera),
-                      icon: const Icon(Icons.camera_alt),
-                      label: Text(
-                        'कैमरा से फोटो लें (Take Photo)',
-                        style: GoogleFonts.poppins(fontSize: 16),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green.shade600,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    // Camera and Gallery Buttons with Audio Button
+                    Row(
+                      children: [
+                        // Camera Button
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () => _captureImage(ImageSource.camera),
+                            icon: const Icon(Icons.camera_alt),
+                            label: Text(
+                              'फोटो लें',
+                              style: GoogleFonts.poppins(fontSize: 14),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green.shade600,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 12),
+                        // Audio Button
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade600,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: IconButton(
+                            onPressed: _showAudioPlayer,
+                            icon: const Icon(Icons.headphones, color: Colors.white),
+                            tooltip: 'गाइडेंस सुनें (Listen to Guidance)',
+                            splashRadius: 24,
+                            iconSize: 24,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 12),
                     OutlinedButton.icon(
                       onPressed: () => _captureImage(ImageSource.gallery),
                       icon: const Icon(Icons.photo_library),
                       label: Text(
-                        'गैलरी से चुनें (Choose from Gallery)',
+                        'गैलरी से चुनें',
                         style: GoogleFonts.poppins(fontSize: 16),
                       ),
                       style: OutlinedButton.styleFrom(
