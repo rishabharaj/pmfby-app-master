@@ -676,32 +676,40 @@ class _AdminFeedbackScreenState extends State<AdminFeedbackScreen> with TickerPr
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: color.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, color: color, size: 24),
+            child: Icon(icon, color: color, size: 20),
           ),
-          const SizedBox(height: 12),
-          Text(
-            value,
-            style: GoogleFonts.poppins(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
+          const SizedBox(height: 8),
+          Flexible(
+            child: Text(
+              value,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: GoogleFonts.roboto(
-              fontSize: 12,
-              color: Colors.grey.shade600,
+          const SizedBox(height: 2),
+          Flexible(
+            child: Text(
+              label,
+              style: GoogleFonts.roboto(
+                fontSize: 11,
+                color: Colors.grey.shade600,
+              ),
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),
