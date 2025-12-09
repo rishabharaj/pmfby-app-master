@@ -17,6 +17,10 @@
     <!-- Modern media permissions -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
+    <!-- Audio permissions -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <!-- Features -->
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>

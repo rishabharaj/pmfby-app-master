@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'dart:io' show Platform;
 
 /// Simple Audio Service for Dashboard - Play/Stop Toggle
 class AudioService extends ChangeNotifier {
@@ -21,6 +23,31 @@ class AudioService extends ChangeNotifier {
     });
   }
 
+  /// Request audio permissions
+  Future<bool> _requestPermissions() async {
+    try {
+      if (Platform.isAndroid) {
+        // Request storage permissions for Android
+        final storageStatus = await Permission.storage.request();
+        final mediaStatus = await Permission.audio.request();
+        
+        debugPrint('Storage Permission: $storageStatus');
+        debugPrint('Audio Permission: $mediaStatus');
+        
+        return storageStatus.isGranted || mediaStatus.isGranted;
+      } else if (Platform.isIOS) {
+        // Request microphone permission for iOS
+        final status = await Permission.microphone.request();
+        debugPrint('Microphone Permission: $status');
+        return status.isGranted;
+      }
+      return true;
+    } catch (e) {
+      debugPrint('❌ Error requesting permissions: $e');
+      return false;
+    }
+  }
+
   /// Toggle: Click to play, click again to stop
   Future<void> toggleAudio() async {
     try {
@@ -30,6 +57,16 @@ class AudioService extends ChangeNotifier {
         _isPlaying = false;
         debugPrint('⏹️ Audio stopped');
       } else {
+        // Request permissions before playing
+        final hasPermission = await _requestPermissions();
+        
+        if (!hasPermission) {
+          debugPrint('❌ Audio permission not granted');
+          _isPlaying = false;
+          notifyListeners();
+          throw Exception('Audio permission required');
+        }
+        
         // Play if stopped
         await _audioPlayer.setAsset(audioFilePath);
         await _audioPlayer.play();
@@ -48,32 +85,6 @@ class AudioService extends ChangeNotifier {
   @override
   void dispose() {
     _audioPlayer.dispose();
-    super.dispose();
-  }
-}
-    _isPlaying = false;
-    _currentPosition = Duration.zero;
-    notifyListeners();
-    debugPrint('⏹️ Audio stopped');
-  }
-
-  /// Pause audio playback
-  void pauseAudio() {
-    _isPlaying = false;
-    notifyListeners();
-    debugPrint('⏸️ Audio paused');
-  }
-
-  /// Resume audio playback
-  void resumeAudio() {
-    _isPlaying = true;
-    notifyListeners();
-    debugPrint('▶️ Audio resumed');
-  }
-
-  @override
-  void dispose() {
-    stopAudio();
     super.dispose();
   }
 }

@@ -69,6 +69,7 @@ dependencies:
   http: ^1.2.0
   fl_chart: ^0.69.0
   just_audio: ^0.9.37
+  permission_handler: ^11.4.4
   
   # ML Kit Translation for 40+ Indian Languages
   google_mlkit_translation: ^0.13.0
