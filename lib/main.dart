@@ -16,6 +16,7 @@ import 'src/features/auth/domain/models/user_model.dart';
 import 'src/features/dashboard/presentation/dashboard_screen.dart';
 import 'src/features/dashboard/presentation/dashboard_selection_screen.dart';
 import 'src/features/officer/officer_dashboard_screen.dart';
+import 'src/features/officer/district_efficiency_screen.dart';
 import 'src/features/camera/presentation/camera_screen.dart';
 import 'src/features/camera/presentation/enhanced_camera_screen.dart';
 import 'src/features/camera/presentation/ar_camera_screen.dart';
@@ -203,6 +204,15 @@ GoRouter _buildRouter(BuildContext context) {
         path: '/officer-dashboard',
         builder: (_, __) => const OfficerDashboardScreen(),
       ),
+<<<<<<< HEAD
+=======
+      
+      // DISTRICT EFFICIENCY SCORE
+      GoRoute(
+        path: '/district-efficiency',
+        builder: (_, __) => const DistrictEfficiencyScreen(),
+      ),
+>>>>>>> 7714536 (Added Traffic Light Dashboard Feature - District Efficiency Score Screen with gamified pending claims widget)
 
       // CAMERA
       GoRoute(

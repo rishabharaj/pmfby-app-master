@@ -690,4 +690,4 @@ This project addresses the challenge of simplifying and accelerating crop insura
 
 **Made with ❤️ for Indian Farmers | KrishiBandhu 🌾**
 
-*Last Updated: December 2024 | Version 1.0.0+1 | SIH25262*
+*Last Updated: December 2025 | Version 1.0.0+1 | SIH25262*

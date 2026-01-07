@@ -486,13 +486,7 @@ class _OfficerDashboardScreenState extends State<OfficerDashboardScreen> {
                           Colors.blue,
                           '+12% from last month',
                         ),
-                        _buildStatCard(
-                          AppStrings.get('officer', 'pending_claims', languageProvider.currentLanguage),
-                          _stats['pending_claims'].toString(),
-                          Icons.pending_actions,
-                          Colors.orange,
-                          'Requires attention',
-                        ),
+                        _buildPendingClaimsWidget(languageProvider.currentLanguage),
                         _buildStatCard(
                           AppStrings.get('officer', 'active_farmers', languageProvider.currentLanguage),
                           _stats['total_farmers'].toString(),
@@ -1038,6 +1032,141 @@ class _OfficerDashboardScreenState extends State<OfficerDashboardScreen> {
     );
   }
 
+  Widget _buildPendingClaimsWidget(String lang) {
+    final int pendingClaims = _stats['pending_claims'];
+    final int totalClaims = _stats['total_claims'];
+    final double riskPercentage = (pendingClaims / totalClaims) * 100;
+    
+    return GestureDetector(
+      onTap: () {
+        // Navigate to District Efficiency Screen
+        context.push('/district-efficiency');
+      },
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade50,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(Icons.notifications_active, color: Colors.red.shade700, size: 20),
+                ),
+              ],
+            ),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '$pendingClaims',
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade800,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    lang == 'hi' ? 'लंबित दावे' : 'Pending Claims',
+                    style: GoogleFonts.roboto(
+                      fontSize: 10,
+                      color: Colors.grey.shade600,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Text(
+                        lang == 'hi' ? 'जोखिम: ' : 'Risk: ',
+                        style: GoogleFonts.roboto(
+                          fontSize: 9,
+                          color: Colors.grey.shade600,
+                        ),
+                      ),
+                      Text(
+                        'HIGH',
+                        style: GoogleFonts.roboto(
+                          fontSize: 9,
+                          color: Colors.red.shade700,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    height: 4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: Colors.grey.shade200,
+                    ),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          flex: 33,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(2),
+                                bottomLeft: Radius.circular(2),
+                              ),
+                              color: Colors.red.shade600,
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          flex: 33,
+                          child: Container(
+                            color: Colors.orange.shade500,
+                          ),
+                        ),
+                        Flexible(
+                          flex: 34,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(2),
+                                bottomRight: Radius.circular(2),
+                              ),
+                              color: Colors.grey.shade300,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+>>>>>>> 7714536 (Added Traffic Light Dashboard Feature - District Efficiency Score Screen with gamified pending claims widget)
   Widget _buildWeatherPlaceholder(String lang) {
     if (_isLoadingWeather) {
       return Container(
