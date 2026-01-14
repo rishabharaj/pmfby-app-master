@@ -120,6 +120,7 @@ A comprehensive Flutter mobile application designed to streamline the **PMFBY (P
 
 ---
 
+
 ## 📁 Project Structure
 
 ```
@@ -186,6 +187,24 @@ krashi_bandhu/
 ├── pubspec.yaml                    # Dependencies
 └── analysis_options.yaml           # Lint rules
 ```
+
+
+
+
+## 🚀 Team & Initiative
+
+### 👥 Team: IMAGINARY_CODERS
+**Hackathon**: Smart India Hackathon 2025
+**Problem Statement ID**: **SIH25262**
+
+**Team Members**
+- Anurag Tiwari
+- Pari Meena
+- Chitransh Sahu
+- Anshika Agrawal
+- Rishabharaj Sharma
+- Rohan Bairagi
+
 
 ---
 
@@ -657,16 +676,6 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 ---
 
-## 🚀 Team & Initiative
-
-### 👥 Team: IMAGINARY_CODERS
-**Hackathon**: Smart India Hackathon 2025
-**Problem Statement ID**: **SIH25262**
-
-**Team Members**
-- Rishabh Araj (Lead Developer)
-- [Add team members]
-
 **Initiative Goals**
 - Modernize crop insurance claim processing
 - Empower Indian farmers with technology
@@ -690,4 +699,17 @@ This project addresses the challenge of simplifying and accelerating crop insura
 
 **Made with ❤️ for Indian Farmers | KrishiBandhu 🌾**
 
+### 👥 Team: IMAGINARY_CODERS
+**Hackathon**: Smart India Hackathon 2025
+**Problem Statement ID**: **SIH25262**
+
+**Team Members**
+- Anurag Tiwari
+- Pari Meena
+- Chitransh Sahu
+- Anshika Agrawal
+- Rishabharaj Sharma
+- Rohan Bairagi
+
 *Last Updated: December 2025 | Version 1.0.0+1 | SIH25262*
+
