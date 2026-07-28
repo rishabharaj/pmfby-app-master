@@ -664,8 +664,12 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 **Problem Statement ID**: **SIH25262**
 
 **Team Members**
-- Rishabh Araj (Lead Developer)
-- [Add team members]
+- Anurag Tiwari 
+- Rishabharaj Sharma
+- Pari Meena
+- Anshika Agrawal
+- Rohan Bairagi
+- Chitransh Sahu
 
 **Initiative Goals**
 - Modernize crop insurance claim processing
